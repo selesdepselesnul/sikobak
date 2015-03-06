@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="443.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="selesdepselesnul.sikobak.view.LoginUIController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="187.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="192.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="199.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="240.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="240.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Nomor Anggota  :" GridPane.rowIndex="1">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <TextField fx:id="idNumberTextField" prefHeight="25.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label text="Password           :   " GridPane.rowIndex="2">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <PasswordField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <MenuButton mnemonicParsing="false" text="Login Sebagai ?" GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Admin" />
+          <MenuItem mnemonicParsing="false" onAction="#onClickLoginUserMenuButton" text="Anggota" />
+        </items>
+      </MenuButton>
+   </children>
+</GridPane>
