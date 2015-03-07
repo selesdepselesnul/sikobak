@@ -1,23 +1,23 @@
 package selesdepselesnul.sikobak.view;
 
-import java.io.IOException;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-import javax.swing.plaf.OptionPaneUI;
 
 import selesdepselesnul.sikobak.MemberAunth;
+import selesdepselesnul.sikobak.MemberAunthDao;
 import selesdepselesnul.sikobak.MemberAunthDaoMYSQL;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class LoginUIController {
+	@FXML
+	MenuItem memberMenuItem;
 	@FXML
 	TextField idNumberTextField;
 
@@ -31,21 +31,25 @@ public class LoginUIController {
 
 	@FXML
 	public void onClickLoginUserMenuButton() {
-		MemberAunth userMemberAunth = new MemberAunth(
-				Integer.parseInt(idNumberTextField.getText()),
-				passwordTextField.getText());
-		MemberAunth dbMemberAunth;
 		try {
-			dbMemberAunth = new MemberAunthDaoMYSQL(
+			MemberAunthDao memberAunthDaoMYSQL = new MemberAunthDaoMYSQL(
 					DriverManager.getConnection(
 							"jdbc:mysqL://localhost/sikobak", "morrisseymarr",
-							"070494")).read(userMemberAunth.getIdNumber());
-			if (dbMemberAunth.equals(userMemberAunth)) {
-				BorderPane root = (BorderPane) FXMLLoader.load(getClass()
-						.getResource("member_ui.fxml"));
+							"070494"));
+			MemberAunth memberAunth = memberAunthDaoMYSQL.read(Integer
+					.parseInt(idNumberTextField.getText()));
+			if (memberAunth.getPassword().equals(passwordTextField.getText())) {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+						"member_ui.fxml"));
+				BorderPane root = fxmlLoader.load();
+				MemberUIController memberUIController = fxmlLoader
+						.getController();
+				memberUIController.setMainStage(this.stage);
+				memberUIController.setMemberAunth(memberAunth);
+				memberUIController.setMemberAunthDAO(memberAunthDaoMYSQL);
 				Scene scene = new Scene(root);
-				scene.getStylesheets()
-						.add(getClass().getResource("member_ui.css")
+				scene.getStylesheets().add(
+						getClass().getResource("member_ui.css")
 								.toExternalForm());
 				this.stage.setScene(scene);
 				this.stage.setTitle("Koperasi Batu Akik - BETA -");

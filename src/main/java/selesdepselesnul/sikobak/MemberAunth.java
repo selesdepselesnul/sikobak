@@ -1,9 +1,60 @@
 package selesdepselesnul.sikobak;
 
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.Date;
+import java.time.LocalDate;
+
 public class MemberAunth {
 
 	private int idNumber;
 	private String password;
+	private String name;
+	private String birthPlace;
+	private LocalDate birthDate;
+	private String religion;
+	private InputStream photo;
+	private String homePhone;
+	private String handPhone;
+	private String email;
+	private long photoLength;
+	private String photoPath;
+
+	public long getPhotoLength() {
+		return photoLength;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getBirthPlace() {
+		return birthPlace;
+	}
+
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
+
+	public String getReligion() {
+		return religion;
+	}
+
+	public InputStream getPhoto() {
+		return photo;
+	}
+
+	public String getHomePhone() {
+		return homePhone;
+	}
+
+	public String getHandPhone() {
+		return handPhone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
 
 	public MemberAunth(int idNumber, String password) {
 		this.idNumber = idNumber;
@@ -15,7 +66,13 @@ public class MemberAunth {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
+	}
+	
+	
+
+	public String getPhotoPath() {
+		return photoPath;
 	}
 
 	public void setPassword(String password) {
@@ -49,6 +106,46 @@ public class MemberAunth {
 		} else if (!password.equals(other.password))
 			return false;
 		return true;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setBirthPlace(String birthPlace) {
+		this.birthPlace = birthPlace;
+	}
+
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public void setReligion(String religion) {
+		this.religion = religion;
+	}
+
+	public void setPhoto(InputStream photo) {
+		this.photo = photo;
+	}
+
+	public void setHomePhone(String homePhone) {
+		this.homePhone = homePhone;
+	}
+
+	public void setHandPhone(String handPhone) {
+		this.handPhone = handPhone;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPhoto(InputStream photoStream, long length) {
+		this.photoLength = length;
+	}
+
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
 	}
 
 }
